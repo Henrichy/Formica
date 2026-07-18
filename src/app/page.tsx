@@ -3,10 +3,12 @@ import TrustedBySection from '@/components/TrustedBySection'
 import CryptoFeatures from '@/components/CryptoFeatures'
 import ConversionSection from '@/components/ConversionSection'
 import FeaturesGrid from '@/components/FeaturesGrid'
+import FAQ from '@/components/FAQ'
+import Testimonials from '@/components/Testimonials'
+import Newsletter from '@/components/Newsletter'
 import OTCJourney from '@/components/OTCJourney'
 import Image from 'next/image'
 import { FaStar } from 'react-icons/fa'
-
 export default function Home() {
   return (
     <>
@@ -291,6 +293,9 @@ export default function Home() {
       <OTCJourney />
       <ConversionSection />
       <FeaturesGrid />
+      <FAQ />
+      <Testimonials />
+      <Newsletter />
     </>
   )
 }

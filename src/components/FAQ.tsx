@@ -1,122 +1,146 @@
 'use client'
 
 import { useState } from 'react'
-import { HiOutlinePlusCircle, HiOutlineMinusCircle } from 'react-icons/hi'
+import { HiChevronUp, HiChevronDown } from 'react-icons/hi'
 
 const faqData = [
   {
-    question: "What is Fortica?",
-    answer: "Fortica is a digital asset trading platform that provides both a retail trading application and an institutional OTC desk. The platform enables individuals and organizations to buy, sell, convert, and manage cryptocurrencies through a secure and structured execution environment"
-  },
-  {
-    question: "What services does Fortica offer?",
-    answer: "Fortica provides:\n• Private OTC (Over-the-Counter) trade execution\n• Block trade support for large transactions\n• Crypto-to-cash conversion (Naira and US Dollar)\n• Corporate treasury crypto solutions\n• Cross-border liquidity and settlement\n• Secure wallet and trading infrastructure"
+    question: "What is OTC trading?",
+    answer: "OTC (Over-the-Counter) trading allows you to buy or sell large amounts of cryptocurrency directly through a dedicated trading desk instead of a public exchange. This helps reduce market impact, provides a confirmed quote before execution, and offers a more personalised settlement experience."
   },
   {
     question: "How do I sell my crypto on Fortica?",
-    answer: "Selling crypto is fully in-app:\n1. Select the asset you want to sell (e.g., USDT, USDC, BUSD)\n2. Choose whether to convert to Naira or US Dollar cash\n3. Select or add your bank or domiciliary account\n4. Confirm the transaction at the displayed real-time rate\n5. Receive settlement based on your selected option"
+    answer: "Selling crypto on Fortica is simple. Connect your wallet, select the cryptocurrency you want to sell, choose your preferred settlement currency (Naira or USD), and we'll provide you with a competitive quote. Once confirmed, our OTC desk will handle the execution and settlement."
   },
   {
-    question: "Can I convert crypto to Naira or US Dollar cash?",
-    answer: "Yes. Fortica allows you to convert supported stablecoins into:\n• Naira (NGN): Paid instantly to your local bank account\n• US Dollar (USD): Sent to your domiciliary account (processed same day)"
+    question: "How long does payment/settlement take?",
+    answer: "Settlement times vary by payment method and currency. Naira settlements typically complete within 2-4 hours, while USD settlements to domiciliary accounts usually take 1-2 business days. We'll keep you updated throughout the process."
   },
   {
-    question: "How do I buy crypto on Fortica?",
-    answer: "To buy crypto on Fortica:\n1. Initiate a buy request on the platform\n2. You will be redirected to WhatsApp to complete the transaction with a support agent\n3. Payment and settlement instructions will be provided during the chat\n4. Your crypto will be delivered to your Fortica account upon confirmation"
-  },
-  {
-    question: "What does OTC (Over-the-Counter) mean?",
-    answer: "OTC trading allows you to execute large crypto transactions directly through Fortica without placing orders on public exchanges. This helps avoid price slippage, ensures controlled pricing, and maintains discretion for high-volume trades."
-  },
-  {
-    question: "How long does settlement take?",
-    answer: "• Naira settlements: Typically instant after transaction confirmation\n• US Dollar settlements: Processed and completed by the end of the same business day"
-  },
-  {
-    question: "Are there any fees for converting crypto?",
-    answer: "Yes.\n• Converting crypto to US Dollar cash attracts a 1.5% fee\n• Other fees, if applicable, are transparently reflected before you confirm any transaction"
-  },
-  {
-    question: "What cryptocurrencies are supported on Fortica?",
-    answer: "Currently, Fortica supports only stablecoins which include:\n• USDT\n• USDC\n• BUSD\n\nAdditional assets are coming soon as the platform expands."
+    question: "Can I receive my payment/settlement in Naira or USD?",
+    answer: "Yes, Fortica supports settlements in both Nigerian Naira (NGN) to your local bank account and US Dollars (USD) to your domiciliary account. You can choose your preferred currency during the transaction setup."
   },
   {
     question: "Is Fortica secure?",
-    answer: "Yes. Fortica is built with a strong focus on security, offering:\n• Secure user accounts\n• Verified liquidity and wallet partners\n• Controlled execution environments for large trades\n• Reliable settlement infrastructure"
+    answer: "Security is our top priority. Fortica operates through licensed, compliance-focused partners and follows industry-standard security practices. We use multi-layer security architecture to protect accounts and transactions, ensuring your assets and data remain safe."
   },
   {
-    question: "Who is Fortica designed for?",
-    answer: "Fortica is built for:\n• Individual crypto users\n• Businesses managing digital assets\n• Financial institutions requiring liquidity and execution services"
+    question: "Are there any hidden fees?",
+    answer: "No hidden fees. All costs are transparently displayed before you confirm any transaction. Our fee structure is competitive and clearly outlined, so you'll always know exactly what you're paying for our services."
+  },
+  // Additional FAQs for "View more" functionality
+  {
+    question: "What cryptocurrencies does Fortica support?",
+    answer: "Currently, Fortica supports major stablecoins including USDT, USDC, and BUSD. We also support Bitcoin (BTC) and Ethereum (ETH) for OTC transactions. Additional cryptocurrencies are being added based on market demand and regulatory compliance."
   },
   {
-    question: "What is the minimum or maximum amount I can trade?",
-    answer: "Trade limits may vary depending on the transaction type and liquidity conditions.\nFor large or specialized trades, Fortica's OTC desk ensures optimal execution.\nSpecific limits are shown during transaction setup or can be confirmed via support."
+    question: "What is the minimum transaction amount?",
+    answer: "The minimum transaction amount varies by cryptocurrency and settlement method. For retail transactions, the minimum is typically $100 equivalent. For OTC desk services, we handle transactions starting from $10,000. Contact our team for specific requirements."
   },
   {
-    question: "Can I partially convert my crypto to US Dollars?",
-    answer: "Yes. You can convert a percentage of your crypto holdings into US Dollar cash.\nThe exact percentage options are defined within the platform at the time of transaction."
+    question: "How do I create a Fortica account?",
+    answer: "Creating an account is straightforward. Visit our website or download the Fortica app, provide your basic information, complete the identity verification process, and you'll be ready to start trading. The entire process usually takes less than 24 hours."
   },
   {
-    question: "How can I contact support?",
-    answer: "You can reach Fortica support via:\n• WhatsApp (for buy transactions and assistance)\n• In app support channels\n• Official communication channels listed on the website"
+    question: "Do I need to complete KYC verification?",
+    answer: "Yes, Know Your Customer (KYC) verification is required for all users to comply with financial regulations and ensure platform security. You'll need to provide a valid ID, proof of address, and complete identity verification during account setup."
+  },
+  {
+    question: "Can businesses use Fortica for corporate transactions?",
+    answer: "Absolutely. Fortica provides dedicated corporate services including bulk transactions, treasury management, and customized settlement solutions for businesses. Contact our corporate team to discuss your specific requirements and get preferential rates."
+  },
+  {
+    question: "What happens if there's an issue with my transaction?",
+    answer: "If you encounter any issues, our support team is available 24/7 to assist you. Every transaction is tracked and can be resolved quickly. We also have dedicated account managers for high-value clients to ensure immediate assistance when needed."
+  },
+  {
+    question: "How does Fortica ensure competitive exchange rates?",
+    answer: "We aggregate liquidity from multiple sources and market makers to ensure you get competitive rates. Our real-time pricing engine constantly monitors market conditions to offer you the best possible exchange rates for your transactions."
+  },
+  {
+    question: "Can I cancel a transaction after confirmation?",
+    answer: "Once a transaction is confirmed and processing has begun, cancellation may not be possible. However, if you contact support immediately after confirmation, we'll do our best to accommodate your request depending on the transaction status and settlement stage."
   }
 ]
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [openIndex, setOpenIndex] = useState<number | null>(0) // First item open by default
+  const [showAll, setShowAll] = useState(false)
 
   const toggleFAQ = (index: number) => {
-    console.log('Toggling FAQ index:', index)
     setOpenIndex(openIndex === index ? null : index)
   }
 
+  const displayedFaqs = showAll ? faqData : faqData.slice(0, 6)
+
   return (
-    <section className="bg-white py-24">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
-            Frequently asked questions
+    <section className=" py-16">
+      <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+            Answers To Your Questions
           </h2>
-          <p className="text-gray-500 text-lg">
-            Everything you need to know about Fortica
+          <p className="text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto">
+            Everything you need to know about managing your assets, protecting 
+            your wealth, and building a secure and successful financial future.
           </p>
         </div>
 
-        <div className="border-t border-gray-100">
-          {faqData.map((faq, index) => (
-            <div key={index} className="border-b border-gray-100 overflow-hidden">
+        {/* FAQ Items */}
+        <div className="space-y-4">
+          {displayedFaqs.map((faq, index) => (
+            <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full flex items-center justify-between py-10 text-left group"
+                className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors duration-200"
               >
-                <span className={`text-xl md:text-2xl font-bold transition-colors duration-200 ${
-                  openIndex === index ? 'text-[#0E43AC]' : 'text-gray-900'
-                }`}>
+                <span className="text-lg md:text-xl font-semibold text-gray-900 pr-4">
                   {faq.question}
                 </span>
-                <div className="text-blue-600 flex-shrink-0">
+                <div className="flex-shrink-0 text-gray-500">
                   {openIndex === index ? (
-                    <HiOutlineMinusCircle className="w-8 h-8" />
+                    <HiChevronUp className="w-5 h-5" />
                   ) : (
-                    <HiOutlinePlusCircle className="w-8 h-8" />
+                    <HiChevronDown className="w-5 h-5" />
                   )}
                 </div>
               </button>
               
-              <div
-                className={`transition-all duration-300 ease-in-out ${
-                  openIndex === index 
-                    ? 'max-h-[2000px] opacity-100 pb-10' 
-                    : 'max-h-0 opacity-0'
-                }`}
-              >
-                <div className="text-gray-500 text-lg md:text-xl leading-relaxed whitespace-pre-line">
-                  {faq.answer}
+              {openIndex === index && (
+                <div className="px-6 pb-6">
+                  <div className="text-gray-600 leading-relaxed">
+                    {faq.answer}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           ))}
         </div>
+
+        {/* View More Button */}
+        {!showAll && faqData.length > 6 && (
+          <div className="text-center mt-12">
+            <button
+              onClick={() => setShowAll(true)}
+              className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-full transition duration-200"
+            >
+              View more
+            </button>
+          </div>
+        )}
+
+        {/* View Less Button (when expanded) */}
+        {showAll && (
+          <div className="text-center mt-12">
+            <button
+              onClick={() => setShowAll(false)}
+              className="bg-gray-600 hover:bg-gray-700 text-white font-medium py-3 px-8 rounded-full transition duration-200"
+            >
+              View less
+            </button>
+          </div>
+        )}
       </div>
     </section>
   )

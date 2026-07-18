@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hide scrollbar for horizontal scrolling components */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Animation for floating elements */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
 html, body {
   overflow-x: clip;
   width: 100%;
